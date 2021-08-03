@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Show Or Hide Elements Base On Dropdown Selection</title>
+		<style>
+			.hideOrShow
+			{
+				color: #fff;
+				padding: 20px;
+				display: none;
+				margin-top: 5px;
+			}
+			.red{ background: #ff0000; }
+			.green{ background: #228B22; }
+			.blue{ background: #0000ff; }
+		</style>
+	</head>
+	<body>
+		<div>
+			<select id="selectId">
+				<option>Choose Color</option>
+				<option value="red">Red</option>
+				<option value="green">Green</option>
+				<option value="blue">Blue</option>
+			</select>
+		</div>
+		<div class="red hideOrShow">You have selected <strong>red option</strong> so i am here</div>
+		<div class="green hideOrShow">You have selected <strong>green option</strong> so i am here</div>
+		<div class="blue hideOrShow">You have selected <strong>blue option</strong> so i am here</div>
+		
+		<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+		
+		<script>
+		$(document).ready(function(){
+			$("#selectId").change(function(){
+				$(this).find("option:selected").each(function(){
+					var optionValue = $(this).attr("value");
+					if(optionValue){
+						$(".hideOrShow").not("." + optionValue).hide();
+						$("." + optionValue).show();
+					} else{
+						$(".hideOrShow").hide();
+					}
+				});
+			}).change();
+		});
+		</script>
+	</body>	
+</html>
